@@ -1,0 +1,48 @@
+mongodb-driver-examples
+-----------------------
+
+Introduction at: <pending>
+
+This git repository includes mongodb connection and query examples
+for the following:
+
+    -Java
+     http://www.mongodb.org/display/DOCS/Java+Language+Center
+
+    -Node.js (using Mongoose)
+     http://www.mongodb.org/display/DOCS/node.JS
+
+    -PHP
+     http://www.mongodb.org/display/DOCS/PHP+Language+Center
+
+    -Python (using pymongo)
+     http://api.mongodb.org/python/current/
+
+    -Ruby (using the official driver from 10gen)
+     http://www.mongodb.org/display/DOCS/Ruby+Language+Center
+
+    -Ruby (using MongoMapper)
+     http://mongomapper.com/documentation/
+
+    -Ruby (using Mongoid)
+     http://mongoid.org/docs.html
+
+These examples should run outright after you install the appropriate
+drivers and get a MongoDB database running on your localhost. See
+http://www.mongodb.org/display/DOCS/Quickstart for guidance. If you
+are using a remote database, simply replace the example URI with
+your own.
+
+Currently, we provide simple connection and query examples with
+some explanation of authentication concerns. In the future, we
+intend to expand these examples to include many MongoDB features,
+such as:
+
+     -Authentication
+     -Replica Set Connection and Failover
+     -Safe mode and Write Concern
+
+We hope these are helpful and appreciate your feedback!
+
+Sincerely,
+The MongoLab Team

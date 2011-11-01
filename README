@@ -1,7 +1,8 @@
 mongodb-driver-examples
 -----------------------
 
-Introduction at: <pending>
+Introduction at:
+http://blog.mongolab.com/2011/11/ample-mongodb-examples/
 
 This git repository includes mongodb connection and query examples
 for the following:

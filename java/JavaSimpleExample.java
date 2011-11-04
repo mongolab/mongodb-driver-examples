@@ -26,8 +26,8 @@ public class JavaSimpleExample {
 	try {
 	    // The MongoURI class can connect and return a database given the URI above.
 	    database = uri.connectDB();
-	    // If you are running in auth mode and have not provided user info
-	    // in your URI, you can use this line:
+	    // If you are running in auth mode and have provided user info
+	    // in your URI, you can use this line.
 	    // database.authenticate(uri.getUsername(), uri.getPassword());
 	} catch(UnknownHostException uhe) {
 	    System.out.println("UnknownHostException: " + uhe);

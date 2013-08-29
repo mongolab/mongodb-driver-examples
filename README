@@ -34,12 +34,9 @@ http://www.mongodb.org/display/DOCS/Quickstart for guidance. If you
 are using a remote database, simply replace the example URI with
 your own.
 
-Currently, we provide simple connection and query examples with
-some explanation of authentication concerns. In the future, we
-intend to expand these examples to include many MongoDB features,
-such as:
+Currently, we provide a simple connection with authentication and 
+query examples. We are currently working on expanding to cover:
 
-     -Authentication
      -Replica Set Connection and Failover
      -Safe mode and Write Concern
 

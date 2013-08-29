@@ -1,103 +1,84 @@
-#!/usr/bin/python 
+#/usr/bin/python
 
-# pymongo_example_simple.py
-# 
-# A sample python script covering connection to a MongoDB database given a
-# fully-qualified URI. There are a few alternate methods, but we prefer the URI
-# connection model because developers can use the same code to handle various
-# database configuration possibilities (single, master/slave, replica sets).
-#
-# Author::  MongoLab
+__author__ = 'mongolab'
 
-# First, require the pymongo MongoDB driver.
-#
+# Written with pymongo-2.6
+# A python script connecting to a MongoDB given a MongoDB Connection URI
+
 import sys
-import pymongo
+from pymongo import MongoClient
+
+### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
+
+MONGODB_URI = 'mongodb://sandbox:test@ds039768.mongolab.com:39768/test2345' 
+
+###############################################################################
+# main
+###############################################################################
+
 
 def main(args):
 
-    # If your database server is running in auth mode, you will need user and
-    # database info. Ex:
-    #    mongodb_uri = 'mongodb://username:password@localhost:27017/dbname'
-    #
-    mongodb_uri = 'mongodb://localhost:27017'
-    db_name = 'mongoquest'
-
-    # pymongo.Connection creates a connection directly from the URI, performing
-    # authentication using the provided user components if necessary.
-    #
     try:
-        connection = pymongo.Connection(mongodb_uri)
-        database = connection[db_name]
-    except:
-        print('Error: Unable to connect to database.')
-        connection = None
-        
-    # What follows is insert, update, and selection code that can vary widely
-    # depending on coding style.
-    #
-    if connection is not None:
-        
-        # To begin with, we'll add a few adventurers to the database. Note that
-        # nothing is required to create the adventurers collection--it is
-        # created automatically when we insert into it. These are simple JSON 
-        # objects.
-        #
-        database.adventurers.insert({'name': 'Cooper',
-                                     'class': 'fighter',
-                                     'level': 5,
-                                     'equipment': {'main-hand': 'sword',
-                                                   'off-hand': 'shield',
-                                                   'armor': 'plate'}})
-        database.adventurers.insert({'name': 'Nishira',
-                                     'class': 'warlock',
-                                     'level': 10,
-                                     'equipment': {'main-hand': 'wand',
-                                                   'off-hand': 'dagger',
-                                                   'armor': 'cloth'}})
-        database.adventurers.insert({'name': 'Mordo',
-                                     'class': 'wizard',
-                                     'level': 11,
-                                     'equipment': {'off-hand': 'dagger',
-                                                   'armor': 'leather'}})
-        
-        # Because it seems we forgot to equip Mordo, we'll need to get him 
-        # ready. Note the dot notation used to address the 'main-hand' key.
-        # Don't send a JSON object describing the 'main-hand' key in the 
-        # context of the 'equipment' key, or MongoDB will overwrite the other 
-        # keys stored under 'equipment'. Mordo would be embarassed without 
-        # armor.
-        #
-        # Note that in python, MongoDB $ operators should be quoted.
-        #
-        database.adventurers.update({'name': 'Mordo' },
-                                    {'$set': {'equipment.main-hand': 'staff'}})
-        
-        # Now that everyone's ready, we'll send them off through standard 
-        # output. Unfortunately this adventure is is for adventurers level 10 
-        # or higher. We pass a JSON object describing our query as the value
-        # of the key we'd like to evaluate.
-        #
-        party = database.adventurers.find({'level': {'$gte': 10}})
-        
-        # Our query returns a Cursor, which can be counted and iterated 
-        # normally.
-        #
-        if party.count() > 0:
-            print('The quest begins!')
-            for adventurer in party:
-                print('%s, level %s %s, departs wearing %s and wielding a %s and %s.'
-                       % ( adventurer['name'], adventurer['level'],
-                           adventurer['class'],
-                           adventurer['equipment']['armor'],
-                           adventurer['equipment']['main-hand'],
-                           adventurer['equipment']['off-hand'] ))
-            print('Good luck, you %s brave souls!' % party.count())
-        else:
-            print('No one is high enough level!')
-        
-        # Since this is an example, we'll clean up after ourselves.
-        database.drop_collection('adventurers')
+        client = MongoClient(MONGODB_URI)
+    except Exception, err:
+        print 'Error: %s' % err
+        return
 
-if __name__ == '__main__': 
+    db = client.get_default_database()
+    
+    # First we'll add a few songs. Nothing is required to create the songs 
+    # collection; it is created automatically when we insert.
+
+    songs = db['songs']
+
+    songs.insert(
+        {
+            'decade': '1970s',
+            'artist': 'Debby Boone',
+            'song': 'You Light Up My Life',
+            'weeksAtOne': 10
+        }
+    )
+
+    songs.insert(
+        {
+            'decade': '1980s',
+            'artist': 'Olivia Newton-John',
+            'song': 'Physical',
+            'weeksAtOne': 10
+        }
+    )
+
+    songs.insert(
+        {
+            'decade': '1990s',
+            'artist': 'Mariah Carey',
+            'song': 'One Sweet Day',
+            'weeksAtOne': 16
+        }
+    )
+
+    # Then we need to give Boyz II Men credit for their contribution to
+    # the hit "One Sweet Day"
+
+    query = {'song': 'One Sweet Day'}
+
+    songs.update(query, {'$set': {'artist': 'Mariah Carey ft. Boyz II Men'}})
+
+    # Finally we run a query which returns all the hits that spent 10 or
+    # more weeks at number 1
+
+    cursor = songs.find({'weeksAtOne': {'$gte': 10}}).sort('decade',1)
+
+    for doc in cursor:
+        print ('In the %s, %s by %s topped the charts for %d straight weeks.' %
+               (doc['decade'], doc['song'], doc['artist'], doc['weeksAtOne']))
+    
+    ### Since this is an example, we'll clean up after ourselves.
+
+    db.drop_collection('songs')
+
+
+if __name__ == '__main__':
     main(sys.argv[1:])

@@ -35,10 +35,8 @@ are using a remote database, simply replace the example URI with
 your own.
 
 Currently, we provide a simple connection with authentication and 
-query examples. We are currently working on expanding to cover:
-
-     -Replica Set Connection and Failover
-     -Safe mode and Write Concern
+query examples. We are working on expanding to cover
+replica set connection and failover. Check back for updates!
 
 We hope these are helpful and appreciate your feedback!
 

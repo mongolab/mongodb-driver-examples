@@ -26,7 +26,7 @@ for the following:
      http://mongomapper.com/documentation/
 
     -Ruby (using Mongoid)
-     http://mongoid.org/docs.html
+     http://mongoid.org/en/mongoid/
 
 These examples should run outright after you install the appropriate
 drivers and get a MongoDB database running on your localhost. See

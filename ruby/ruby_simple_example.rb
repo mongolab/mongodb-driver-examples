@@ -1,66 +1,77 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 
-# ruby_simple_example.rb
-# 
-# A sample ruby script covering connection to a MongoDB database given a
-# fully-qualified URI. There are a few additional means, but we prefer the URI
-# connection model because developers can use the same code to handle various
-# database configuration possibilities (single, master/slave, replica sets).
-#
-# Author::  Mongolab
+# Copyright (c) 2013 ObjectLabs Corporation
+# Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# First, require the official MongoDB ruby driver. We also need URI support. 
-# Depending on your environment, you may or may not need to require 'rubygems'.
-#
-require 'mongo'
+# Written with mongo 1.9.2
+# Documentation: http://api.mongodb.org/ruby/
+# A ruby script connecting to a MongoDB database given a MongoDB Connection URI.
 
-# If your database server is running in auth mode, you will need to provide a URI
-# with authentication info and a database name, ex:
-#  'mongodb://username:password@localhost:27017/mongoquest'
-#
-mongo_uri = 'mongodb://localhost:27017'
-db_name = 'mongoquest'
+require "mongo"
+require "json"
 
-# Mongo::Connection.from_uri() creates a connection given a fully-qualified
-# mongodb URI. Note that we pass the URI string directly and obtain a database
-# reference from the connection.
-#
-connection = Mongo::Connection.from_uri(mongo_uri)
-db = connection.db(db_name)
+### Create seed data
 
-# What follows is code that can vary widely depending on coding style.
-# First we identify our collection.
-#
-item_collection = db.collection('items')
+seed_data = [
+  {
+    'decade' => '1970s',
+    'artist' => 'Debby Boone',
+    'song' => 'You Light Up My Life',
+    'weeksAtOne' => 10
+  },
+  {
+    'decade' => '1980s',
+    'artist' => 'Olivia Newton-John',
+    'song' => 'Physical',
+    'weeksAtOne' => 10
+  },
+  {
+    'decade' => '1990s',
+    'artist' => 'Mariah Carey',
+    'song' => 'One Sweet Day',
+    'weeksAtOne' => 16
+  }
+]
 
-# Then we insert a few items defined by their relative cost
-# and size.
-#
-item_collection.insert({'name' => 'sword', 'size' => 3, 'cost' => 4})
-item_collection.insert({'name' => 'map', 'size' => 2, 'cost' => 5})
-item_collection.insert({'name' => 'leather armor', 'size' => 4, 'cost' => 7})
-item_collection.insert({'name' => 'dagger', 'size' => 1, 'cost' => 2})
-item_collection.insert({'name' => 'mcguffin', 'size' => 2, 'cost' => 10})
+### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-# A simple find call retrieves all documents in the collection.
-# 
-puts 'Initial item set'
-item_collection.find().each { |result| puts result }
+uri = "mongodb://user:pass@host:port/db"
 
-# Now we run an update query, passing the criteria, operation, and
-# the multi modifier, which ensures the update will run against all
-# results, not just the first. Here we are reducing the cost of all
-# items more expensive than 3 by 1.
-#
-item_collection.update({'cost' => {'$gt' => 3}}, {'$inc' => {'cost' => -1}}, :multi => true)
+client = Mongo::MongoClient.from_uri(uri)
 
-puts 'Discounted item set'
-item_collection.find().each { |result| puts result }
+db_name = uri[%r{/([^/\?]+)(\?|$)}, 1]
+db = client.db(db_name)
 
-# Since this is an example, we'll clean up after ourselves.
-#
-item_collection.drop
+# First we'll add a few songs. Nothing is required to create the songs 
+# collection; it is created automatically when we insert.
 
-# Thanks for shopping
-#
-exit
+songs = db.collection("songs")
+
+# Note that the insert method can take either an array or a single dict.
+
+songs.insert(seed_data)
+
+# Then we need to give Boyz II Men credit for their contribution to
+# the hit "One Sweet Day"
+
+query = { 'song' => 'One Sweet Day' }
+
+songs.update(query, { '$set' => { 'artist' => 'Mariah Carey ft. Boyz II Men' } })
+
+# Finally we run a query which returns all the hits that spent 10 or
+# more weeks at number 1
+
+cursor = songs.find({ 'weeksAtOne' => { '$gte' => 10 } }).sort('decade', 1)
+
+cursor.each{ |doc| puts "In the #{ doc['decade'] }," +
+                        " #{ doc['song'] } by #{ doc['artist'] }" +
+                        " topped the charts for #{ doc['weeksAtOne'] }" +
+                        " straight weeks." }
+
+### Since this is an example, we"ll clean up after ourselves.
+
+songs.drop()
+
+### Only close the connection when your app is terminating
+
+client.close()

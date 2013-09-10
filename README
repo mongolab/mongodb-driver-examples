@@ -4,6 +4,9 @@ mongodb-driver-examples
 This git repository includes mongodb connection and query examples
 for the following:
 
+    -C#
+     http://api.mongodb.org/csharp/current/
+
     -Java
      http://www.mongodb.org/display/DOCS/Java+Language+Center
 

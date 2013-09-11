@@ -1,16 +1,16 @@
 mongodb-driver-examples
 -----------------------
 
-Introduction at:
-http://blog.mongolab.com/2011/11/ample-mongodb-examples/
-
 This git repository includes mongodb connection and query examples
 for the following:
+
+    -C#
+     http://api.mongodb.org/csharp/current/
 
     -Java
      http://www.mongodb.org/display/DOCS/Java+Language+Center
 
-    -Node.js (using Mongoose)
+    -Node.js
      http://www.mongodb.org/display/DOCS/node.JS
 
     -PHP
@@ -22,17 +22,10 @@ for the following:
     -Ruby (using the official driver from 10gen)
      http://www.mongodb.org/display/DOCS/Ruby+Language+Center
 
-    -Ruby (using MongoMapper)
-     http://mongomapper.com/documentation/
-
-    -Ruby (using Mongoid)
-     http://mongoid.org/en/mongoid/
 
 These examples should run outright after you install the appropriate
-drivers and get a MongoDB database running on your localhost. See
-http://www.mongodb.org/display/DOCS/Quickstart for guidance. If you
-are using a remote database, simply replace the example URI with
-your own.
+drivers and insert your MongoDB URI. See
+http://www.mongodb.org/display/DOCS/Quickstart for guidance. 
 
 Currently, we provide a simple connection with authentication and 
 query examples. We are working on expanding to cover

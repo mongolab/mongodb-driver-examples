@@ -5,22 +5,22 @@ This git repository includes mongodb connection and query examples
 for the following:
 
     -C#
-     http://api.mongodb.org/csharp/current/
+     http://docs.mongodb.org/ecosystem/drivers/csharp/
 
     -Java
-     http://www.mongodb.org/display/DOCS/Java+Language+Center
+     http://docs.mongodb.org/ecosystem/drivers/java/
 
     -Node.js
-     http://www.mongodb.org/display/DOCS/node.JS
+     http://docs.mongodb.org/ecosystem/drivers/node-js/
 
     -PHP
-     http://www.mongodb.org/display/DOCS/PHP+Language+Center
+     http://docs.mongodb.org/ecosystem/drivers/php/
 
     -Python (using pymongo)
-     http://api.mongodb.org/python/current/
+     http://docs.mongodb.org/ecosystem/drivers/python/
 
-    -Ruby (using the official driver from 10gen)
-     http://www.mongodb.org/display/DOCS/Ruby+Language+Center
+    -Ruby (using the official driver from MongoDB, Inc.)
+     http://docs.mongodb.org/ecosystem/drivers/ruby/
 
 
 These examples should run outright after you install the appropriate

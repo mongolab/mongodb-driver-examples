@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 import com.mongodb.*;
 
 
-public class JavaSingleExample {
+public class JavaSimpleExample {
 
     // Extra helper code
 
@@ -40,7 +40,7 @@ public class JavaSingleExample {
         return seedData;
     }
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws UnknownHostException{
         
         // Create seed data
         

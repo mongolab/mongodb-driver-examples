@@ -27,10 +27,6 @@ These examples should run outright after you install the appropriate
 drivers and insert your MongoDB URI. See
 http://www.mongodb.org/display/DOCS/Quickstart for guidance. 
 
-Currently, we provide a simple connection with authentication and 
-query examples. We are working on expanding to cover
-replica set connection and failover. Check back for updates!
-
 We hope these are helpful and appreciate your feedback!
 
 Sincerely,

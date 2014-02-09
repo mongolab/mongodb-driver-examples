@@ -16,5 +16,5 @@ production:
         # timeout is the time in seconds for the driver to wait for an operation.
         # A value of 30 allows for plenty of time for DNS slowness/network blips. 
         # Note that if you have a long-running query (over 30 seconds), it will timeout.
-        # Use Queryable#no_timeout for long queries: http://mongoid.org/en/origin/docs/options.html.
+        # See this example for long-running queries: https://gist.github.com/chrischang12/8892969
         timeout: 30

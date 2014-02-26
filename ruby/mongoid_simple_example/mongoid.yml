@@ -1,28 +1,28 @@
-# mongoid v3.x
+# mongoid 3.x
 #
 # As discussed in: http://blog.mongolab.com/2014/02/mongodb-driver-tips-tricks-mongoid-3
 #
 production: 
   sessions:
     default:
-      # URI allows for easy replica-set connection setup. 
+      # The standard MongoDB connection URI allows for easy replica set connection setup. 
       # Use environment variables or a config file to keep your credentials safe.
-      uri: 'mongodb://u:p@ds029559-a1.mongolab.com:29559,ds029559-a0.mongolab.com:29559/sl-data-prod-hsessions'
+      uri: 'mongodb://user:pass@ds027017-a0.mongolab.com:27017,ds033577-a1.mongolab.com:27017/mydb]'
 
       options: 
-        # Default consistency is :eventual, which reads from secondaries when psosible. Strong forces reads to primary.
-        # We recommend using strong consistency.
+        # The default consistency is :eventual, which reads from secondaries when psosible. 
+        # Strong forces reads to primary. We recommend using strong consistency.
         consistency: :strong
 
-        # max_retries specifies the number of times your driver will attempt an operation before giving up.
+        # max_retries specifies the number of times to attempt an operation before giving up.
         max_retries: 30
 
         # retry_interval specifies the number of seconds to wait before retrying a single operation.
         retry_interval: 1
 
-        # timeout is the time in seconds for an operation to timeout (default: 5)
-        # A value of 15 allows for plenty of time in most operating environments.
-        # There is a known issue where Mongoid uses a timeout value equal to timeout times 2. 15 results in a timeout of 30s.
-        # Note that if you have a long-running query (over 30 seconds), it will timeout.
-        # See this example for long-running queries: https://gist.github.com/chrischang12/8892969
+        # The default timeout is 5, which is the time in seconds for an operation to time out.
+        # We recommend 15 because it allows for plenty of time in most operating environments.
+        # Mongoid doubles the configured value (known issue) so 15 results in a timeout of 30s.
+        # Note that if you have a long-running query (over 30 seconds), it will time out.
+        # See our example for long-running queries in the blog post referenced above.
         timeout: 15

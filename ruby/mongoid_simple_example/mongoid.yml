@@ -7,7 +7,7 @@ production:
     default:
       # The standard MongoDB connection URI allows for easy replica set connection setup. 
       # Use environment variables or a config file to keep your credentials safe.
-      uri: 'mongodb://user:pass@ds027017-a0.mongolab.com:27017,ds033577-a1.mongolab.com:27017/mydb]'
+      uri: 'mongodb://user:pass@ds027017-a0.mongolab.com:27017,ds033577-a1.mongolab.com:27017/mydb'
 
       options: 
         # The default consistency is :eventual, which reads from secondaries when psosible. 

@@ -1,20 +1,28 @@
-#mongoid v3.~
+# mongoid v3.x
+#
+# As discussed in: http://blog.mongolab.com/2014/02/mongodb-driver-tips-tricks-mongoid-3
+#
 production: 
   sessions:
     default:
       # URI allows for easy replica-set connection setup. 
       # Use environment variables or a config file to keep your credentials safe.
-      uri: 'mongodb://user:pass@host:port/db'
+      uri: 'mongodb://u:p@ds029559-a1.mongolab.com:29559,ds029559-a0.mongolab.com:29559/sl-data-prod-hsessions'
+
       options: 
-        # Default consistency is :eventual, which reads from secondary first. Strong forces reads to primary.
-        # You should use strong consistency if you need the freshest data available.
+        # Default consistency is :eventual, which reads from secondaries when psosible. Strong forces reads to primary.
+        # We recommend using strong consistency.
         consistency: :strong
+
         # max_retries specifies the number of times your driver will attempt an operation before giving up.
         max_retries: 30
+
         # retry_interval specifies the number of seconds to wait before retrying a single operation.
         retry_interval: 1
-        # timeout is the time in seconds for the driver to wait for an operation.
-        # A value of 30 allows for plenty of time for DNS slowness/network blips. 
+
+        # timeout is the time in seconds for an operation to timeout (default: 5)
+        # A value of 15 allows for plenty of time in most operating environments.
+        # There is a known issue where Mongoid uses a timeout value equal to timeout times 2. 15 results in a timeout of 30s.
         # Note that if you have a long-running query (over 30 seconds), it will timeout.
         # See this example for long-running queries: https://gist.github.com/chrischang12/8892969
-        timeout: 30
+        timeout: 15

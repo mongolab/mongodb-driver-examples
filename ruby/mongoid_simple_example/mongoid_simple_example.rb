@@ -7,7 +7,6 @@
 # Documentation: http://mongoid.org/en/mongoid/index.html 
 # A mongoid script connecting to a MongoDB database given a MongoDB Connection URI.
 
-require 'rubygems'
 require 'mongoid'
 Mongoid.load!('mongoid.yml', :production)
 

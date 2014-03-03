@@ -10,7 +10,7 @@ production:
       uri: 'mongodb://username:password@host1:port1,host2:port2/database'
 
       options: 
-        # The default consistency is :eventual, which reads from secondaries when psosible. 
+        # The default consistency is :eventual, which reads from secondaries when possible. 
         # Strong forces reads to primary. We recommend using strong consistency.
         consistency: :strong
 

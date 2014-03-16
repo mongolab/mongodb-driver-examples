@@ -1,0 +1,20 @@
+#mongoid v3.~
+production: 
+  sessions:
+    default:
+      # URI allows for easy replica-set connection setup. 
+      # Use environment variables or a config file to keep your credentials safe.
+      uri: 'mongodb://111.111.111.111:10002/admin'
+      options: 
+        # Default consistency is :eventual, which reads from secondary first. Strong forces reads to primary.
+        # You should use strong consistency if you need the freshest data available.
+        consistency: :strong
+        # max_retries specifies the number of times your driver will attempt an operation before giving up.
+        max_retries: 30
+        # retry_interval specifies the number of seconds to wait before retrying a single operation.
+        retry_interval: 1
+        # timeout is the time in seconds for the driver to wait for an operation.
+        # A value of 30 allows for plenty of time for DNS slowness/network blips. 
+        # Note that if you have a long-running query (over 30 seconds), it will timeout.
+        # Use Queryable#no_timeout for long queries: http://mongoid.org/en/origin/docs/options.html.
+        timeout: 1 

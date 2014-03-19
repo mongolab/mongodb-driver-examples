@@ -85,7 +85,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
           songs.drop(function (err) {
             if(err) throw err;
            
-            // Only close the connection when your app is terminating
+            // Only close the connection when your app is terminating.
             db.close(function (err) {
               if(err) throw err;
             });

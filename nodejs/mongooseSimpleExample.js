@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
 var uri = 'mongodb://user:pass@host:port/db';
-mongoose.connect('mongodb://u:p@ds061928.mongolab.com:61928/chris_test');
+mongoose.connect(uri);
 
 var db = mongoose.connection;
 

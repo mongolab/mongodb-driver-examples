@@ -27,9 +27,9 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  */
 
 var mongodbUri = 'mongodb://user:pass@host:port/db';
-var mongooseUri = uriUtil.formatMongoose(mongodbUri, options);
+var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
-mongoose.connect(mongooseUri);
+mongoose.connect(mongooseUri, options);
 
 var db = mongoose.connection;
 

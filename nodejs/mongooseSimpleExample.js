@@ -2,7 +2,7 @@
  * Copyright (c) 2014 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with: mongoose@3.8.8
+ * Written with: mongoose@3.8.8, mongodb-uri@0.9.3
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
  */

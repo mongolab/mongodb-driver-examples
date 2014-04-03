@@ -7,18 +7,17 @@
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodbUri = require('mongodb-uri');
 var mongoose = require('mongoose');
+var uriUtil = require('mongodb-uri');
 
 // Standard MongoLab URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 // Mongoose takes a connection string with a different format
-// Use the mongodb-uri module for easy formatting
-// Details can be found in our blog post: 
+// Use the mongodb-uri module for converting formats
 
-var mongolabUri = 'mongodb://user:pass@host:port/db';
-var uri = mongodbUri.formatMongoose(mongolabUri);
+var mongodbUri = 'mongodb://user:pass@host:port/db';
+var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
-mongoose.connect(uri);
+mongoose.connect(mongooseUri);
 
 var db = mongoose.connection;
 

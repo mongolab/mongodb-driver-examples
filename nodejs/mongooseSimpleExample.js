@@ -10,9 +10,11 @@
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
 
-// Standard MongoLab URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
-// Mongoose takes a connection string with a different format
-// Use the mongodb-uri module for converting formats
+/*
+ * Mongoose uses a different connection string format than MongoDB's standard.
+ * Use the mongodb-uri library to help you convert from the standard format to
+ * Mongoose's format.
+ */
 
 var mongodbUri = 'mongodb://user:pass@host:port/db';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);

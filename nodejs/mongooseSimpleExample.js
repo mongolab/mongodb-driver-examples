@@ -6,7 +6,6 @@
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
  */
-
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
  
@@ -16,7 +15,6 @@ var uriUtil = require('mongodb-uri');
  * We recommend a 30 second connection timeout because it allows for 
  * plenty of time in most operating environments.
  */
- 
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
  
@@ -25,7 +23,6 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  * Use the mongodb-uri library to help you convert from the standard format to
  * Mongoose's format.
  */
-
 var mongodbUri = 'mongodb://user:pass@host:port/db';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
@@ -38,7 +35,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
 
   // Create song schema
-
   var songSchema = mongoose.Schema({
     decade: String,
     artist: String,
@@ -47,11 +43,9 @@ db.once('open', function callback () {
   });
 
   // Store song documents in a collection called "songs"
-
   var Song = mongoose.model('songs', songSchema);
 
   // Create seed data
-
   var seventies = new Song({
     decade: '1970s',
     artist: 'Debby Boone',
@@ -77,7 +71,6 @@ db.once('open', function callback () {
    * First we'll add a few songs. Nothing is required to create the 
    * songs collection; it is created automatically when we insert.
    */
-
   seventies.save();
   eighties.save();
   nineties.save();
@@ -86,7 +79,6 @@ db.once('open', function callback () {
    * Then we need to give Boyz II Men credit for their contribution
    * to the hit "One Sweet Day".
    */
-
   Song.update({ song: 'One Sweet Day'}, { $set: { artist: 'Mariah Carey ft. Boyz II Men'} }, 
     function (err, numberAffected, raw) {
 
@@ -96,7 +88,6 @@ db.once('open', function callback () {
        * Finally we run a query which returns all the hits that spend 10 or
        * more weeks at number 1.
        */
-
       Song.find({ weeksAtOne: { $gte: 10} }).sort({ decade: 1}).exec(function (err, docs){
 
         if(err) throw err;

@@ -5,7 +5,7 @@
  * Written with: mongoose@3.8.8
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
-*/
+ */
 
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');

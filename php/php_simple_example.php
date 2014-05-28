@@ -50,11 +50,9 @@ $db = $client->selectDB("mydb");
  * First we'll add a few songs. Nothing is required to create the songs
  * collection; it is created automatically when we insert.
  */
-
 $songs = $db->songs;
 
 // To insert a dict, use the insert method.
-
 $songs->batchInsert($seedData);
 
 /*

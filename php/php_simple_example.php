@@ -4,7 +4,7 @@
  * Copyright (c) 2014 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with extension mongo 1.4.3
+ * Written with extension mongo 1.5.2
  * Documentation: http://php.net/mongo
  * A PHP script connecting to a MongoDB database given a MongoDB Connection URI.
  */
@@ -32,11 +32,22 @@ $seedData = array(
     ),
 );
 
-// Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
+/*
+ * Standard single-node URI format: 
+ * mongodb://[username:password@]host:port/[database]
+ */
 
-$uri = "mongodb://user:pass@host:port/db";
-$client = new MongoClient($uri, array("connectTimeoutMS" => 30000);
-$db = $client->selectDB("dbname");
+$uri = "mongodb://myuser:mypass@host:port/mydb";
+$options = array("connectTimeoutMS" => 30000);
+
+/*
+ * Include the replica set name as an option for a multi-node replica set connection:
+ *   $uri = "mongodb://myuser:mypass@host1:port1,host2:port:2/mydb";
+ *   $options = array("replicaSet" => "myReplicaSet", "connectTimeoutMS" => 30000);
+ */
+
+$client = new MongoClient($uri, $options );
+$db = $client->selectDB("mydb");
 
 /*
  * First we'll add a few songs. Nothing is required to create the songs

@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-# Copyright (c) 2014 ObjectLabs Corporation
+# Copyright (c) 2015 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 # Written with mongo 1.9.2
@@ -35,7 +35,7 @@ seed_data = [
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-uri = "mongodb://user:pass@host:port/db"
+uri = "mongodb://changy:tamader9@ds029559-a0.mongolab.com:29559,ds029559-a1.mongolab.com:29559/public"
 
 client = Mongo::MongoClient.from_uri(uri)
 

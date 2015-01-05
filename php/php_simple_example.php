@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2014 ObjectLabs Corporation
+ * Copyright (c) 2015 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
  * Written with extension mongo 1.5.2
@@ -35,7 +35,7 @@ $seedData = array(
  * Standard single-node URI format: 
  * mongodb://[username:password@]host:port/[database]
  */
-$uri = "mongodb://myuser:mypass@host:port/mydb";
+$uri = "mongodb://changy:tamader9@ds061928.mongolab.com:61928/chris_test";
 $options = array("connectTimeoutMS" => 30000);
 
 /*
@@ -44,7 +44,7 @@ $options = array("connectTimeoutMS" => 30000);
  *   $options = array("replicaSet" => "myReplicaSet", "connectTimeoutMS" => 30000);
  */
 $client = new MongoClient($uri, $options );
-$db = $client->selectDB("mydb");
+$db = $client->selectDB("chris_test");
 
 /*
  * First we'll add a few songs. Nothing is required to create the songs

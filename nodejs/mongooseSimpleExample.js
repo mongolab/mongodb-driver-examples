@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 ObjectLabs Corporation
+ * Copyright (c) 2015 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
  * Written with: mongoose@3.8.8, mongodb-uri@0.9.3

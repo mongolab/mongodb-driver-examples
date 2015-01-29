@@ -8,7 +8,6 @@
 # A ruby script connecting to a MongoDB database given a MongoDB Connection URI.
 
 require "mongo"
-require "json"
 
 ### Create seed data
 

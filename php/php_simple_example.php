@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2014 ObjectLabs Corporation
+ * Copyright (c) 2015 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
  * Written with extension mongo 1.5.2

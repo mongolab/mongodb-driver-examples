@@ -32,10 +32,10 @@ mongolab_uri = "mongodb://<dbUser>:<dbPassword>@<host1>:<port1>,<host2>:<port2>/
 # Pass the following keyword arguments to ensure proper production behavior:
 #
 #   connectTimeoutMS  30 s to allow for PaaS warm-up; adjust down as needed for faster failures. For more, see docs:
-#                     http://docs.mongolab.com/timeout/#connection-timeout
+#                     http://docs.mongolab.com/timeouts/#connection-timeout
 #
 #   socketTimeoutMS   No timeout (None) to allow for long-running operations
-#                     (http://docs.mongolab.com/timeout/#socket-timeout).
+#                     (http://docs.mongolab.com/timeouts/#socket-timeout).
 #
 #   socketKeepAlive   Enabled (True) to ensure idle connections are kept alive in the presence of a firewall.
 #

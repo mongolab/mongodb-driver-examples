@@ -22,7 +22,6 @@ namespace SimpleExample
     // Extra helper code
     static BsonDocument[] CreateSeedData()
     {
-
       BsonDocument seventies = new BsonDocument {
         { "Decade" , "1970s" },
         { "Artist" , "Debby Boone" },
@@ -54,7 +53,6 @@ namespace SimpleExample
       BsonDocument[] songData = seedData;
 
       // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
-
       String uri = "mongodb://user:pass@host:port/db";
   
       var client = new MongoClient(uri);

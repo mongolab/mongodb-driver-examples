@@ -8,7 +8,6 @@
  * MongoLab blog post on Mongoose: http://blog.mongolab.com/2014/04/mongodb-driver-mongoose/
  */
 var mongoose = require('mongoose');
-var uriUtil = require('mongodb-uri');
  
 /* 
  * Mongoose by default sets the auto_reconnect option to true.
@@ -25,9 +24,8 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  * Mongoose's format.
  */
 var mongodbUri = 'mongodb://user:pass@host:port/db';
-var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
-mongoose.connect(mongooseUri, options);
+mongoose.connect(mongodbUri, options);
 
 var db = mongoose.connection;
 

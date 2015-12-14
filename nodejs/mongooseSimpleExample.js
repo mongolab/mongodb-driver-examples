@@ -5,7 +5,6 @@
  * Written with: mongoose@3.8.8
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
- * MongoLab blog post on Mongoose: http://blog.mongolab.com/2014/04/mongodb-driver-mongoose/
  */
 var mongoose = require('mongoose');
  

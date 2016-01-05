@@ -1,0 +1,4 @@
+production: 
+  clients: 
+    default: 
+      uri: "mongodb://user:pass@host:port/db"

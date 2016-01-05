@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-# Copyright (c) 2015 ObjectLabs Corporation
+# Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 __author__ = 'mongolab'
 
-# Written with pymongo-2.6 
+# Written with pymongo-3.2 
 # Documentation: http://api.mongodb.org/python/
 # A python script connecting to a MongoDB given a MongoDB Connection URI.
 

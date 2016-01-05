@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-# Copyright (c) 2015 ObjectLabs Corporation
+# Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-from pymongo import MongoClient  # pymongo>=3.0
+from pymongo import MongoClient  # pymongo>=3.2
 
 """
 PyMongo Production Connection Example
@@ -15,7 +15,7 @@ For demonstration purposes, configuration is hard-coded; in practice, configurat
 environment variables.
 
   ##########################################################################################################################
-  WARNING: This example requires PyMongo 3.0 or later to work correctly. In particular, if you are connecting over SSL
+  WARNING: This example requires PyMongo 3.2 or later to work correctly. In particular, if you are connecting over SSL
            with an earlier driver version additional configuration will be required for it to properly authenticate the
            server.
   ##########################################################################################################################

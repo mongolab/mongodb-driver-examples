@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-# Copyright (c) 2015 ObjectLabs Corporation
+# Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# Written with mongoid 3.1.6 
+# Written with mongoid 5.0.2 
 # Documentation: http://mongoid.org/en/mongoid/index.html 
 # A mongoid script connecting to a MongoDB database given a MongoDB Connection URI.
 
@@ -46,9 +46,9 @@ nineties = Song.new(
 
 ### Write the songs to your MongoDB
 
-seventies.save()
-eighties.save()
-nineties.save()
+seventies.save!
+eighties.save!
+nineties.save!
 
 # We need to give Boyz II Men credit for their contribution to
 # the hit "One Sweet Day"

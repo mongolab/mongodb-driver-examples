@@ -22,6 +22,9 @@ for the following:
     -Ruby (using the official driver from MongoDB, Inc.)
      http://docs.mongodb.org/ecosystem/drivers/ruby/
 
+    -Ruby (Mongoid)
+     https://docs.mongodb.org/ecosystem/tutorial/ruby-mongoid-tutorial/
+
 
 These examples should run outright after you install the appropriate
 drivers and insert your MongoDB URI. See

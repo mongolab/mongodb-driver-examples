@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2015 ObjectLabs Corporation
+ * Copyright (c) 2016 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with mongo-2.11.2.jar
+ * Written with mongo-2.14.0.jar
  * Documentation: http://api.mongodb.org/java/
  * A Java class connecting to a MongoDB database given a MongoDB Connection URI.
  */

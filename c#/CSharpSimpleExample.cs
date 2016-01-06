@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2015 ObjectLabs Corporation
+ * Copyright (c) 2016 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with CSharpDriver-2.0.0
+ * Written with CSharpDriver-2.2.0
  * Documentation: http://api.mongodb.org/csharp/
  * A C# class connecting to a MongoDB database given a MongoDB Connection URI.
  */
@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Core;
 
 namespace SimpleExample
 {

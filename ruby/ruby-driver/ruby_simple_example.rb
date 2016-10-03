@@ -3,7 +3,7 @@
 # Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# Written with mongo 2.2.1
+# Written with mongo 2.3.0
 # Documentation: http://api.mongodb.org/ruby/
 # A ruby script connecting to a MongoDB database given a MongoDB Connection URI.
 

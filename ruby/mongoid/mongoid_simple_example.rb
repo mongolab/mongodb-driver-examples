@@ -3,7 +3,7 @@
 # Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# Written with mongoid 5.0.2 
+# Written with mongoid 6.0.0
 # Documentation: http://mongoid.org/en/mongoid/index.html 
 # A mongoid script connecting to a MongoDB database given a MongoDB Connection URI.
 

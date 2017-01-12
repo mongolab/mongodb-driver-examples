@@ -3,10 +3,10 @@
 # Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-__author__ = 'mongolab'
+__author__ = 'mLab'
 
-# Written with pymongo-3.2 
-# Documentation: http://api.mongodb.org/python/
+# Written with pymongo-3.3 
+# Documentation: http://docs.mongodb.org/ecosystem/drivers/python/
 # A python script connecting to a MongoDB given a MongoDB Connection URI.
 
 import sys
@@ -37,7 +37,7 @@ SEED_DATA = [
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-MONGODB_URI = 'mongodb://user:pass@host:port/db' 
+uri = 'mongodb://user:pass@host:port/db' 
 
 ###############################################################################
 # main
@@ -45,7 +45,7 @@ MONGODB_URI = 'mongodb://user:pass@host:port/db'
 
 def main(args):
 
-    client = pymongo.MongoClient(MONGODB_URI)
+    client = pymongo.MongoClient(uri)
 
     db = client.get_default_database()
     

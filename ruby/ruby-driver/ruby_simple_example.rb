@@ -3,8 +3,8 @@
 # Copyright (c) 2016 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# Written with mongo 2.2.1
-# Documentation: http://api.mongodb.org/ruby/
+# Written with mongo 2.3.0
+# Documentation: http://docs.mongodb.org/ecosystem/drivers/ruby/
 # A ruby script connecting to a MongoDB database given a MongoDB Connection URI.
 
 require "mongo"
@@ -34,7 +34,8 @@ seed_data = [
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-uri = "mongodb://user:pass@host:port/db"
+# uri = "mongodb://user:pass@host:port/db"
+uri = "mongodb://localhost:27017/db"
 
 client = Mongo::Client.new(uri)
 

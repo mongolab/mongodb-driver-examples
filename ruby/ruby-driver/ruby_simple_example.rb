@@ -34,8 +34,7 @@ seed_data = [
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-# uri = "mongodb://user:pass@host:port/db"
-uri = "mongodb://localhost:27017/db"
+uri = "mongodb://user:pass@host:port/db"
 
 client = Mongo::Client.new(uri)
 

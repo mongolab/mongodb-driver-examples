@@ -1,0 +1,18 @@
+{
+  "name": "nodejs-driver-example",
+  "description": "Node JS driver example for MongoDB", 
+  "main": "nodeSimpleExample.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mongolab/mongodb-driver-examples.git"
+  },
+  "scripts": {
+    "start": "node nodeSimpleExample.js"
+  },
+  "author": "mLab",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "2.2.21",
+    "mongoose": "4.7.7"
+  }
+}

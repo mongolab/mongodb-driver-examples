@@ -2,13 +2,15 @@
  * Copyright (c) 2016 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with: mongoose@4.3.4
+ * Written with: mongoose@4.7.7
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
  */
 var mongoose = require('mongoose');    
 
 var mongodbUri = 'mongodb://user:pass@host:port/db';
+
+mongoose.Promise = global.Promise
 
 mongoose.connect(mongodbUri);
 

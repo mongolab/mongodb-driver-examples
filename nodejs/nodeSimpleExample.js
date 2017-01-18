@@ -2,7 +2,7 @@
  * Copyright (c) 2016 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with: mongodb@2.1.3
+ * Written with: mongodb@2.2.21
  * Documentation: http://mongodb.github.io/node-mongodb-native/
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */

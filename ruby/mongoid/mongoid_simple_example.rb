@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-# Copyright (c) 2016 ObjectLabs Corporation
+# Copyright (c) 2017 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
-# Written with mongoid 6.0.0
+# Written with mongoid 6.1.0
 # Documentation: https://docs.mongodb.com/ruby-driver/master/mongoid/
 # A mongoid script connecting to a MongoDB database given a MongoDB Connection URI.
 

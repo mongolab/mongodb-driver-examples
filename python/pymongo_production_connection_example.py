@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 ObjectLabs Corporation
+# Copyright (c) 2017 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 from pymongo import MongoClient  # pymongo>=3.2
@@ -27,7 +27,7 @@ environment variables.
 #
 # If you are using a PaaS add-on integration e.g. via Heroku, the URI is usually available via an environment variable. 
 # Consult the documentation for the PaaS that you are using for more information on this.
-uri = "mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?replicaSet=<replicaSetName>&ssl=true"
+# uri = "mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?replicaSet=<replicaSetName>&ssl=true"
 
 # Pass the following keyword arguments to ensure proper production behavior:
 #
@@ -41,7 +41,7 @@ uri = "mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?
 #
 # See PyMongo docs for more details about the connection options:
 #
-#   https://api.mongodb.org/python/3.2/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient
+#   https://api.mongodb.org/python/3.4.0/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient
 #
 client = MongoClient(uri,
                      connectTimeoutMS=30000,

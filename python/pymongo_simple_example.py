@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 ObjectLabs Corporation
+# Copyright (c) 2017 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 __author__ = 'mLab'
 
-# Written with pymongo-3.3 
+# Written with pymongo-3.4
 # Documentation: http://docs.mongodb.org/ecosystem/drivers/python/
 # A python script connecting to a MongoDB given a MongoDB Connection URI.
 
@@ -56,7 +56,7 @@ def main(args):
 
     # Note that the insert method can take either an array or a single dict.
 
-    songs.insert(SEED_DATA)
+    songs.insert_many(SEED_DATA)
 
     # Then we need to give Boyz II Men credit for their contribution to
     # the hit "One Sweet Day".

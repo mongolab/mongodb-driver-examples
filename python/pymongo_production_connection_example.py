@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 ObjectLabs Corporation
+# Copyright (c) 2017 ObjectLabs Corporation
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 from pymongo import MongoClient  # pymongo>=3.2
@@ -23,27 +23,27 @@ environment variables.
 
 # Your deployment's URI in the standard format (http://docs.mongodb.org/manual/reference/connection-string/).
 #
-# The URI can be found via the MongoLab management portal (http://docs.mongolab.com/connecting/#connect-string).
+# The URI can be found via the mLab management portal (http://docs.mlab.com/connecting/#connect-string).
 #
-# If you are using a PaaS add-on integration e.g. via Heroku, the URI is usually available via an environment variable, often
-# named "MONGOLAB_URI". Consult the documentation for the add-on you are using.
-mongolab_uri = "mongodb://<dbUser>:<dbPassword>@<host1>:<port1>,<host2>:<port2>/<dbName>?replicaSet=<replicaSetName>&ssl=true"
+# If you are using a PaaS add-on integration e.g. via Heroku, the URI is usually available via an environment variable. 
+# Consult the documentation for the PaaS that you are using for more information on this.
+# uri = "mongodb://<dbuser>:<dbpassword>@<host1>:<port1>,<host2>:<port2>/<dbname>?replicaSet=<replicaSetName>&ssl=true"
 
 # Pass the following keyword arguments to ensure proper production behavior:
 #
 #   connectTimeoutMS  30 s to allow for PaaS warm-up; adjust down as needed for faster failures. For more, see docs:
-#                     http://docs.mongolab.com/timeouts/#connection-timeout
+#                     http://docs.mlab.com/timeouts/#connection-timeout
 #
 #   socketTimeoutMS   No timeout (None) to allow for long-running operations
-#                     (http://docs.mongolab.com/timeouts/#socket-timeout).
+#                     (http://docs.mlab.com/timeouts/#socket-timeout).
 #
 #   socketKeepAlive   Enabled (True) to ensure idle connections are kept alive in the presence of a firewall.
 #
 # See PyMongo docs for more details about the connection options:
 #
-#   https://api.mongodb.org/python/3.0/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient
+#   https://api.mongodb.org/python/3.4.0/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient
 #
-client = MongoClient(mongolab_uri,
+client = MongoClient(uri,
                      connectTimeoutMS=30000,
                      socketTimeoutMS=None,
                      socketKeepAlive=True)

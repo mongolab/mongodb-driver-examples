@@ -29,43 +29,33 @@ import java.util.List;
 
 public class JavaSimpleExample {
 
-    // Extra helper code
-
-    public static ArrayList<Document>[] createSeedData(){
-        
-        Document seventies = new Document();
-        seventies.put("decade", "1970s");
-        seventies.put("artist", "Debby Boone");
-        seventies.put("song", "You Light Up My Life");
-        seventies.put("weeksAtOne", 10);
-        
-        Document eighties = new Document();
-        eighties.put("decade", "1980s");
-        eighties.put("artist", "Olivia Newton-John");
-        eighties.put("song", "Physical");
-        eighties.put("weeksAtOne", 10);
-        
-        Document nineties = new Document();
-        nineties.put("decade", "1990s");
-        nineties.put("artist", "Mariah Carey");
-        nineties.put("song", "One Sweet Day");
-        nineties.put("weeksAtOne", 16);
-        
-        final List<Document> seedData = {seventies, eighties, nineties};
-        
-        return seedData;
-    }
-    
     public static void main(String[] args) throws UnknownHostException{
         
         // Create seed data
         
-        final List<Document> seedData = createSeedData();
-        
+        List<Document> seedData = new ArrayList<Document>();
+
+        seedData.add(new Document("decade", "1970s")
+            .append("artist", "Debby Boone")
+            .append("song", "You Light Up My Life")
+            .append("weeksAtOne", 10)
+        );
+
+        seedData.add(new Document("decade", "1980s")
+            .append("artist", "Olivia Newton-John")
+            .append("song", "Physical")
+            .append("weeksAtOne", 10)
+        );
+
+        seedData.add(new Document("decade", "1990s")
+            .append("artist", "Mariah Carey")
+            .append("song", "One Sweet Day")
+            .append("weeksAtOne", 16)
+        );
+
         // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
        
-        // MongoClientURI uri  = new MongoClientURI("mongodb://user:pass@host:port/db"); 
-        MongoClientURI uri  = new MongoClientURI("mongodb://localhost:27017/db"); 
+        MongoClientURI uri  = new MongoClientURI("mongodb://user:pass@host:port/db"); 
         MongoClient client = new MongoClient(uri);
         MongoDatabase db = client.getDatabase(uri.getDatabase());
         
@@ -74,7 +64,7 @@ public class JavaSimpleExample {
          * songs collection; it is created automatically when we insert.
          */
         
-        MongoCollection songs = db.getCollection("songs");
+        MongoCollection<Document> songs = db.getCollection("songs");
 
         // Note that the insert method can take either an array or a document.
         
@@ -96,23 +86,19 @@ public class JavaSimpleExample {
         Document findQuery = new Document("weeksAtOne", new Document("$gte",10));
         Document orderBy = new Document("decade", 1);
 
-        MongoCursor<Document> docs = songs.find(findQuery).sort(orderBy).iterator();
+        MongoCursor<Document> cursor = songs.find(findQuery).sort(orderBy).iterator();
 
-        // while(docs.hasNext()){
-        //     DBObject doc = docs.next();
-        //     System.out.println(
-        //         "In the " + doc.get("decade") + ", " + doc.get("song") + 
-        //         " by " + doc.get("artist") + " topped the charts for " + 
-        //         doc.get("weeksAtOne") + " straight weeks."
-        //     );
-        // }
-        
         try {
-            while (docs.hasNext()) {
-                System.out.println(docs.next().toJson());
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                System.out.println(
+                    "In the " + doc.get("decade") + ", " + doc.get("song") + 
+                    " by " + doc.get("artist") + " topped the charts for " + 
+                    doc.get("weeksAtOne") + " straight weeks."
+                );
             }
         } finally {
-            docs.close();
+            cursor.close();
         }
 
         // Since this is an example, we'll clean up after ourselves.

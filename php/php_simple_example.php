@@ -1,13 +1,15 @@
 <?php
 
 /*
- * Copyright (c) 2016 ObjectLabs Corporation
+ * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with extension mongo 1.6.12
- * Documentation: http://php.net/mongo
+ * Written with extension mongodb ^1.0.0 & php7.0
+ * Documentation: http://docs.mongodb.org/ecosystem/drivers/php/
  * A PHP script connecting to a MongoDB database given a MongoDB Connection URI.
  */
+
+require 'vendor/autoload.php';
 
 // Create seed data
 $seedData = array(
@@ -37,33 +39,35 @@ $seedData = array(
  */
 $uri = "mongodb://user:pass@host:port/db";
 
-$client = new MongoClient($uri);
-$db = $client->selectDB("db");
+$client = new MongoDB\Client($uri);
 
 /*
  * First we'll add a few songs. Nothing is required to create the songs
  * collection; it is created automatically when we insert.
  */
-$songs = $db->songs;
+$songs = $client->db->songs;
 
 // To insert a dict, use the insert method.
-$songs->batchInsert($seedData);
+$songs->insertMany($seedData);
 
 /*
  * Then we need to give Boyz II Men credit for their contribution to
  * the hit "One Sweet Day".
 */
-$songs->update(
+$songs->updateOne(
     array('artist' => 'Mariah Carey'), 
     array('$set' => array('artist' => 'Mariah Carey ft. Boyz II Men'))
 );
-    
+
 /*
  * Finally we run a query which returns all the hits that spent 10 
  * or more weeks at number 1. 
 */
 $query = array('weeksAtOne' => array('$gte' => 10));
-$cursor = $songs->find($query)->sort(array('decade' => 1));
+$options = array(
+    "sort" => array('decade' => 1),
+);
+$cursor = $songs->find($query,$options);
 
 foreach($cursor as $doc) {
     echo 'In the ' .$doc['decade'];
@@ -75,8 +79,5 @@ foreach($cursor as $doc) {
 
 // Since this is an example, we'll clean up after ourselves.
 $songs->drop();
-
-// Only close the connection when your app is terminating
-$client->close();
 
 ?>

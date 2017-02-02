@@ -1,0 +1,12 @@
+{
+    "name": "mLab/php",
+    "require": {
+        "mongodb/mongodb": "^1.0.0"
+    },
+    "authors": [
+        {
+            "name": "mLab",
+            "email": "support@mlab.com"
+        }
+    ]
+}

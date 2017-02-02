@@ -1,95 +1,106 @@
 /*
- * Copyright (c) 2016 ObjectLabs Corporation
+ * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with mongo-2.14.0.jar
+ * Written with mongo-3.4.2.jar
  * Documentation: http://api.mongodb.org/java/
  * A Java class connecting to a MongoDB database given a MongoDB Connection URI.
  */
-
 import java.net.UnknownHostException;
-import com.mongodb.*;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.ServerAddress;
+
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
+
+import org.bson.Document;
+import java.util.Arrays;
+import com.mongodb.Block;
+
+import com.mongodb.client.MongoCursor;
+import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.result.DeleteResult;
+import static com.mongodb.client.model.Updates.*;
+import com.mongodb.client.result.UpdateResult;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JavaSimpleExample {
 
-    // Extra helper code
-
-    public static BasicDBObject[] createSeedData(){
-        
-        BasicDBObject seventies = new BasicDBObject();
-        seventies.put("decade", "1970s");
-        seventies.put("artist", "Debby Boone");
-        seventies.put("song", "You Light Up My Life");
-        seventies.put("weeksAtOne", 10);
-        
-        BasicDBObject eighties = new BasicDBObject();
-        eighties.put("decade", "1980s");
-        eighties.put("artist", "Olivia Newton-John");
-        eighties.put("song", "Physical");
-        eighties.put("weeksAtOne", 10);
-        
-        BasicDBObject nineties = new BasicDBObject();
-        nineties.put("decade", "1990s");
-        nineties.put("artist", "Mariah Carey");
-        nineties.put("song", "One Sweet Day");
-        nineties.put("weeksAtOne", 16);
-        
-        final BasicDBObject[] seedData = {seventies, eighties, nineties};
-        
-        return seedData;
-    }
-    
     public static void main(String[] args) throws UnknownHostException{
         
         // Create seed data
         
-        final BasicDBObject[] seedData = createSeedData();
-        
+        List<Document> seedData = new ArrayList<Document>();
+
+        seedData.add(new Document("decade", "1970s")
+            .append("artist", "Debby Boone")
+            .append("song", "You Light Up My Life")
+            .append("weeksAtOne", 10)
+        );
+
+        seedData.add(new Document("decade", "1980s")
+            .append("artist", "Olivia Newton-John")
+            .append("song", "Physical")
+            .append("weeksAtOne", 10)
+        );
+
+        seedData.add(new Document("decade", "1990s")
+            .append("artist", "Mariah Carey")
+            .append("song", "One Sweet Day")
+            .append("weeksAtOne", 16)
+        );
+
         // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
        
         MongoClientURI uri  = new MongoClientURI("mongodb://user:pass@host:port/db"); 
         MongoClient client = new MongoClient(uri);
-        DB db = client.getDB(uri.getDatabase());
+        MongoDatabase db = client.getDatabase(uri.getDatabase());
         
         /*
          * First we'll add a few songs. Nothing is required to create the
          * songs collection; it is created automatically when we insert.
          */
         
-        DBCollection songs = db.getCollection("songs");
+        MongoCollection<Document> songs = db.getCollection("songs");
 
         // Note that the insert method can take either an array or a document.
         
-        songs.insert(seedData);
+        songs.insertMany(seedData);
        
         /*
          * Then we need to give Boyz II Men credit for their contribution to
          * the hit "One Sweet Day".
          */
 
-        BasicDBObject updateQuery = new BasicDBObject("song", "One Sweet Day");
-        songs.update(updateQuery, new BasicDBObject("$set", new BasicDBObject("artist", "Mariah Carey ft. Boyz II Men")));
+        Document updateQuery = new Document("song", "One Sweet Day");
+        songs.updateOne(updateQuery, new Document("$set", new Document("artist", "Mariah Carey ft. Boyz II Men")));
         
         /*
          * Finally we run a query which returns all the hits that spent 10 
          * or more weeks at number 1.
          */
       
-        BasicDBObject findQuery = new BasicDBObject("weeksAtOne", new BasicDBObject("$gte",10));
-        BasicDBObject orderBy = new BasicDBObject("decade", 1);
+        Document findQuery = new Document("weeksAtOne", new Document("$gte",10));
+        Document orderBy = new Document("decade", 1);
 
-        DBCursor docs = songs.find(findQuery).sort(orderBy);
+        MongoCursor<Document> cursor = songs.find(findQuery).sort(orderBy).iterator();
 
-        while(docs.hasNext()){
-            DBObject doc = docs.next();
-            System.out.println(
-                "In the " + doc.get("decade") + ", " + doc.get("song") + 
-                " by " + doc.get("artist") + " topped the charts for " + 
-                doc.get("weeksAtOne") + " straight weeks."
-            );
+        try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                System.out.println(
+                    "In the " + doc.get("decade") + ", " + doc.get("song") + 
+                    " by " + doc.get("artist") + " topped the charts for " + 
+                    doc.get("weeksAtOne") + " straight weeks."
+                );
+            }
+        } finally {
+            cursor.close();
         }
-        
+
         // Since this is an example, we'll clean up after ourselves.
 
         songs.drop();

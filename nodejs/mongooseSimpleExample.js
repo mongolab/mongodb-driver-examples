@@ -1,16 +1,18 @@
 /*
- * Copyright (c) 2016 ObjectLabs Corporation
+ * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with: mongoose@4.3.4
+ * Written with: mongoose@4.7.7
  * Documentation: http://mongoosejs.com/docs/guide.html
  * A Mongoose script connecting to a MongoDB database given a MongoDB Connection URI.
  */
 var mongoose = require('mongoose');    
 
-var mongodbUri = 'mongodb://user:pass@host:port/db';
+var uri = 'mongodb://user:pass@host:port/db';
 
-mongoose.connect(mongodbUri);
+mongoose.Promise = global.Promise
+
+mongoose.connect(uri);
 
 var db = mongoose.connection;
 
@@ -55,9 +57,8 @@ db.once('open', function callback () {
    * First we'll add a few songs. Nothing is required to create the 
    * songs collection; it is created automatically when we insert.
    */
-  seventies.save();
-  eighties.save();
-  nineties.save();
+  var list = [seventies, eighties, nineties]
+  Song.insertMany(list);
 
   /*
    * Then we need to give Boyz II Men credit for their contribution

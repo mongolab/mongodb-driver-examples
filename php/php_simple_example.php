@@ -4,12 +4,12 @@
  * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with extension mongodb ^1.0.0 & php7.0
+ * Written with extension mongodb ^1.2 & php7.1
  * Documentation: http://docs.mongodb.org/ecosystem/drivers/php/
  * A PHP script connecting to a MongoDB database given a MongoDB Connection URI.
  */
 
-require 'vendor/autoload.php';
+require 'vendor/autoload.php'; // include Composer's autoloader
 
 // Create seed data
 $seedData = array(

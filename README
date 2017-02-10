@@ -11,7 +11,10 @@ for the following:
      http://docs.mongodb.org/ecosystem/drivers/java/
 
     -Node.js
-     http://docs.mongodb.org/ecosystem/drivers/node-js/
+     https://mongodb.github.io/node-mongodb-native/
+
+    -Node.js (Mongoose)
+     http://mongoosejs.com/
 
     -PHP
      http://docs.mongodb.org/ecosystem/drivers/php/
@@ -19,20 +22,20 @@ for the following:
     -Python (using pymongo)
      http://docs.mongodb.org/ecosystem/drivers/python/
 
-    -Ruby (using the official driver from MongoDB, Inc.)
-     http://docs.mongodb.org/ecosystem/drivers/ruby/
+    -Ruby
+     https://docs.mongodb.com/ruby-driver/master/
 
     -Ruby (Mongoid)
-     https://docs.mongodb.org/ecosystem/tutorial/ruby-mongoid-tutorial/
+     https://docs.mongodb.com/ruby-driver/master/mongoid/
 
 
 These examples should run outright after you install the appropriate
 drivers and insert your MongoDB URI. See
-http://www.mongodb.org/display/DOCS/Quickstart for guidance. 
+https://docs.mongodb.com/manual/installation/ for guidance. 
 
 We hope these are helpful and appreciate your feedback!
 
 Sincerely,
-The MongoLab Team
-http://www.mongolab.com
-twitter: @mongolab
+The mLab Team
+http://www.mlab.com
+twitter: @mLab

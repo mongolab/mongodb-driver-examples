@@ -2,7 +2,7 @@
  * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with CSharpDriver-2.4.1
+ * Written with CSharpDriver-2.3.0
  * Documentation: http://docs.mongodb.org/ecosystem/drivers/csharp/
  * A C# class connecting to a MongoDB database given a MongoDB Connection URI.
  */

@@ -8,7 +8,7 @@
  */
 const mongoose = require('mongoose');
 
-let uri = 'mongodb://localhost:27017/test';
+let uri = 'mongodb://user:pass@host:port/dbname';
 
 mongoose.connect(uri);
 

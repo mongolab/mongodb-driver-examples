@@ -2,16 +2,16 @@
  * Copyright (c) 2017 ObjectLabs Corporation
  * Distributed under the MIT license - http://opensource.org/licenses/MIT
  *
- * Written with: mongodb@2.2.21
- * Documentation: http://docs.mongodb.org/ecosystem/drivers/node-js/
+ * Written with: mongodb@3.0.2
+ * Documentation: https://mongodb.github.io/node-mongodb-native/
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodb = require('mongodb');
+const mongodb = require('mongodb');
 
 // Create seed data
 
-var seedData = [
+let seedData = [
   {
     decade: '1970s',
     artist: 'Debby Boone',
@@ -34,23 +34,30 @@ var seedData = [
 
 // Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-var uri = 'mongodb://user:pass@host:port/db';
+let uri = 'mongodb://user:pass@host:port/dbname';
 
-mongodb.MongoClient.connect(uri, function(err, db) {
-  
+mongodb.MongoClient.connect(uri, function(err, client) {
+
   if(err) throw err;
-  
+
   /*
-   * First we'll add a few songs. Nothing is required to create the 
+   * Get the database from the client. Nothing is required to create a
+   * new database, it is created automatically when we insert.
+   */
+
+  let db = client.db('dbname')
+
+  /*
+   * First we'll add a few songs. Nothing is required to create the
    * songs collection; it is created automatically when we insert.
    */
 
-  var songs = db.collection('songs');
+  let songs = db.collection('songs');
 
    // Note that the insert method can take either an array or a dict.
 
   songs.insert(seedData, function(err, result) {
-    
+
     if(err) throw err;
 
     /*
@@ -59,10 +66,10 @@ mongodb.MongoClient.connect(uri, function(err, db) {
      */
 
     songs.update(
-      { song: 'One Sweet Day' }, 
+      { song: 'One Sweet Day' },
       { $set: { artist: 'Mariah Carey ft. Boyz II Men' } },
       function (err, result) {
-        
+
         if(err) throw err;
 
         /*
@@ -76,17 +83,17 @@ mongodb.MongoClient.connect(uri, function(err, db) {
 
           docs.forEach(function (doc) {
             console.log(
-              'In the ' + doc['decade'] + ', ' + doc['song'] + ' by ' + doc['artist'] + 
+              'In the ' + doc['decade'] + ', ' + doc['song'] + ' by ' + doc['artist'] +
               ' topped the charts for ' + doc['weeksAtOne'] + ' straight weeks.'
             );
           });
-         
+
           // Since this is an example, we'll clean up after ourselves.
           songs.drop(function (err) {
             if(err) throw err;
-           
+
             // Only close the connection when your app is terminating.
-            db.close(function (err) {
+            client.close(function (err) {
               if(err) throw err;
             });
           });

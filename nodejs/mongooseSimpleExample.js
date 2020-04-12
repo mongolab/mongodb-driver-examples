@@ -65,7 +65,7 @@ db.once('open', function callback() {
      * to the hit "One Sweet Day".
      */
 
-    return Song.update({ song: 'One Sweet Day'}, { $set: { artist: 'Mariah Carey ft. Boyz II Men'} })
+    return Song.updateOne({ song: 'One Sweet Day'}, { $set: { artist: 'Mariah Carey ft. Boyz II Men'} })
 
   }).then(() => {
 
